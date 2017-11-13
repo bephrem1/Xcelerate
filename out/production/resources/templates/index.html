@@ -4,12 +4,31 @@
 <head th:replace="layout :: head"></head>
 
 <body>
-    <h1>Alpha Vantage Access Example.</h1>
+    <h1>Quandl API Access Example.</h1>
 
     <form th:action="@{/}" method="post">
         <p class="form-field-title">Enter Ticker: </p><input type="text" id="ticker" name="ticker"/>
         <button type="submit" class="button" text="Fetch Ticker Info">Fetch</button>
     </form>
+
+    <div th:if="${days != null}">
+        <table>
+            <th:block th:each="day : ${days}">
+                <tr>
+                    <th>Date</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                </tr>
+                <tr>
+                    <td th:text="${day[0]}">...</td>
+                    <td th:text="${day[1]}">...</td>
+                    <td th:text="${day[2]}">...</td>
+                    <td th:text="${day[3]}">...</td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
 
 </body>
 

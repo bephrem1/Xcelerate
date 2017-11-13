@@ -62,6 +62,7 @@ public abstract class RestApiService<T extends Dto> {
                     .build()
                     .expand(params);
             String url = uriComponents.toUriString();
+            System.out.println(url);
             return restTemplate.getForObject(url, getDtoClass());
         }
     }
