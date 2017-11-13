@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <h1>Alpha Vantage Access Example.</h1>
+
+    <form th:action="@{/}" method="post">
+        <p class="form-field-title">Enter Ticker: </p><input type="text" id="ticker" name="ticker"/>
+        <button type="submit" class="button" text="Fetch Ticker Info">Fetch</button>
+    </form>
+
+</body>
+
+</html>
