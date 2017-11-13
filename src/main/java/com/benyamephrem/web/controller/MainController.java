@@ -1,6 +1,7 @@
 package com.benyamephrem.web.controller;
 
-import com.benyamephrem.service.resttemplate.quote.StockService;
+import com.benyamephrem.service.dto.stock.Stock;
+import com.benyamephrem.service.resttemplate.stock.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +24,9 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String getTickerData(@RequestParam String ticker, RedirectAttributes redirectAttributes){
 
-        //Print out data retrieved
+        Stock stock = stockService.getStockHistoryByTicker(ticker);
+
+        System.out.println(stock.getTimeSeries().getDay().getHigh());
 
         return "redirect:/";
     }

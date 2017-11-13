@@ -1,8 +1,8 @@
-package com.benyamephrem.service.resttemplate.quote;
+package com.benyamephrem.service.resttemplate.stock;
 
 //StockService implementation. Fetches quote data and passes them through dto's
 
-import com.benyamephrem.service.dto.quote.Stock;
+import com.benyamephrem.service.dto.stock.Stock;
 import com.benyamephrem.service.resttemplate.RestApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.benyamephrem.service.dto.quote;
+package com.benyamephrem.service.dto.stock;
 
 import com.benyamephrem.service.dto.Dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,9 +11,9 @@ public class Stock extends Dto{
     //@JsonProperty annotation. Otherwise Spring takes the variable name to be the JSON property name.
     //@JsonProperty("") <- DEFAULT
     @JsonProperty("Time Series (Daily)")
-    private List<String> days; //Current asking price for a security
+    private TimeSeries timeSeries; //Current asking price for a security
 
-    public List<String> getDays() {
-        return days;
+    public TimeSeries getTimeSeries() {
+        return timeSeries;
     }
 }
