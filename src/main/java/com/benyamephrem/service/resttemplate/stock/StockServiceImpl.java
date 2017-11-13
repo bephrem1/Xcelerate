@@ -19,9 +19,9 @@ public class StockServiceImpl extends RestApiService<Stock> implements StockServ
 
     @Autowired
     public StockServiceImpl(
-            @Value("${alphavantage.api.name}") String name, //Inject values in from application.properties file
-            @Value("${alphavantage.api.key}") String key,
-            @Value("${alphavantage.api.host}") String host) {
+            @Value("${quandl.api.name}") String name, //Inject values in from application.properties file
+            @Value("${quandl.api.key}") String key,
+            @Value("${quandl.api.host}") String host) {
         super();
         this.name = name;
         this.key = key;
@@ -33,10 +33,9 @@ public class StockServiceImpl extends RestApiService<Stock> implements StockServ
     //Ex: https://etws.etrade.com/market/rest/quote/GOOG?detailFlag=ALL
     @Override
     public Stock getStockHistoryByTicker(String ticker) {
-        return get("/query?function={function}&symbol={ticker}&apikey={apikey}")
-                .param("function", "TIME_SERIES_DAILY")
+        return get("/api/v3/datasets/EOD/{ticker}.json?api_key={api_key}")
                 .param("ticker", ticker)
-                .param("apikey", getApiKey())
+                .param("api_key", getApiKey())
                 .execute();
     }
 

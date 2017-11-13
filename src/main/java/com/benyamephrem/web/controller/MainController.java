@@ -24,10 +24,6 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String getTickerData(@RequestParam String ticker, RedirectAttributes redirectAttributes){
 
-        Stock stock = stockService.getStockHistoryByTicker(ticker);
-
-        System.out.println(stock.getTimeSeries().getDay().getHigh());
-
         return "redirect:/";
     }
 
