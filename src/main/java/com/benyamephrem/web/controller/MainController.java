@@ -1,5 +1,6 @@
 package com.benyamephrem.web.controller;
 
+import com.benyamephrem.service.dto.stock.Stock;
 import com.benyamephrem.service.resttemplate.stock.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,20 @@ public class MainController {
     public String getTickerData(@RequestParam String ticker, RedirectAttributes redirectAttributes){
 
         //Pass data to modelmap
-        redirectAttributes.addFlashAttribute("days",
-                stockService.getStockHistoryByTicker(ticker).getData().getStockFinancialData());
+        try {
+            Stock stock = stockService.getStockHistoryByTicker(ticker);
+
+            redirectAttributes.addFlashAttribute("name", stock.getData().getName());
+            redirectAttributes.addFlashAttribute("description", stock.getData().getDescription());
+            redirectAttributes.addFlashAttribute("startDate", stock.getData().getStartDate());
+            redirectAttributes.addFlashAttribute("endDate", stock.getData().getEndDate());
+
+            redirectAttributes.addFlashAttribute("days",
+                    stock.getData().getStockFinancialData());
+
+        } catch(Exception ex){
+            return "error";
+        }
 
         return "redirect:/";
     }

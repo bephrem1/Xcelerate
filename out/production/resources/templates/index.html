@@ -12,10 +12,14 @@
     </form>
 
     <div th:if="${days != null}">
+        <h2 th:text="${name}"></h2>
+        <div th:remove="tag" th:utext="${description}"></div>
+        <h2 th:inline="text">This data runs from [[${startDate}]] to [[${endDate}]]</h2>
         <table>
             <th:block th:each="day : ${days}">
                 <tr>
                     <th>Date</th>
+                    <th>Open</th>
                     <th>High</th>
                     <th>Low</th>
                     <th>Close</th>
@@ -25,6 +29,7 @@
                     <td th:text="${day[1]}">...</td>
                     <td th:text="${day[2]}">...</td>
                     <td th:text="${day[3]}">...</td>
+                    <td th:text="${day[4]}">...</td>
                 </tr>
             </th:block>
         </table>
