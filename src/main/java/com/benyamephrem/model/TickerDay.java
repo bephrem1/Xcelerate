@@ -1,6 +1,8 @@
 package com.benyamephrem.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -11,7 +13,10 @@ public class TickerDay {
     @Id
     private String id; //The id MongoDB will assign each index
 
+    //Sort the documents in ascending order based on date
+    @Indexed(name = "date_index", direction = IndexDirection.ASCENDING)
     private Date date; //date
+
     private Double open; //open price
     private Double high; //high price
     private Double low; //low price
