@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-
 @Controller
 public class MainController {
 
@@ -26,21 +24,21 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String getTickerData(@RequestParam String ticker, RedirectAttributes redirectAttributes){
 
-        //Pass data to modelmap
-        try {
-            Stock stock = stockService.getStockHistoryByTicker(ticker);
-
-            redirectAttributes.addFlashAttribute("name", stock.getData().getName());
-            redirectAttributes.addFlashAttribute("description", stock.getData().getDescription());
-            redirectAttributes.addFlashAttribute("startDate", stock.getData().getStartDate());
-            redirectAttributes.addFlashAttribute("endDate", stock.getData().getEndDate());
-
-            redirectAttributes.addFlashAttribute("days",
-                    stock.getData().getStockFinancialData());
-
-        } catch(Exception ex){
-            return "error";
-        }
+//        //Pass data to modelmap
+//        try {
+//            Stock stock = stockService.getStockHistoryByTicker(ticker);
+//
+//            redirectAttributes.addFlashAttribute("name", stock.getData().getName());
+//            redirectAttributes.addFlashAttribute("description", stock.getData().getDescription());
+//            redirectAttributes.addFlashAttribute("startDate", stock.getData().getStartDate());
+//            redirectAttributes.addFlashAttribute("endDate", stock.getData().getEndDate());
+//
+//            redirectAttributes.addFlashAttribute("days",
+//                    stock.getData().getStockFinancialData());
+//
+//        } catch(Exception ex){
+//            return "error";
+//        }
 
         return "redirect:/";
     }

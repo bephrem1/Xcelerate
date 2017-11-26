@@ -29,11 +29,29 @@ public class TickerDay {
     private Double lowAdjusted;
     private Double closeAdjusted;
     private Double volumeAdjusted;
+    private Double firstDelta; //The change between this ticker day and the next ticker day
+    private Double secondDelta; //The change between this ticker's first delta and the next ticker's delta
 
-    public TickerDay(String id, Date date, Double open, Double high, Double low, Double close, Double volume,
-                     Double dividend, Double split, Double openAdjusted, Double highAdjusted, Double lowAdjusted,
-                     Double closeAdjusted, Double volumeAdjusted) {
-        this.id = id;
+    /*
+
+    Basically this is what is happening...
+    Value - Stock value
+    Δ: First Derivative - Velocity (change between two points)
+    ΔΔ: Second Derivative - Acceleration (change between the change between two points)
+    +-------+-------+--------+--------+----------------+--------------------+
+    | Value | $3.00 | $4.00  | $2.00  | $10.00 (prev)  | n                  |
+    +-------+-------+--------+--------+----------------+--------------------+
+    | Δ     | x     | +$1.00 | -$2.00 | +$8.00 (prevΔ) | n - prev           |
+    +-------+-------+--------+--------+----------------+--------------------+
+    | ΔΔ    | x     | x      | -$3.00 | +$10.00        | (n - prev) - prevΔ |
+    +-------+-------+--------+--------+----------------+--------------------+
+
+     */
+
+    public TickerDay(Date date, Double open, Double high, Double low, Double close, Double volume,
+                     Double dividend, Double split, Double openAdjusted, Double highAdjusted,
+                     Double lowAdjusted, Double closeAdjusted, Double volumeAdjusted, Double firstDelta,
+                     Double secondDelta) {
         this.date = date;
         this.open = open;
         this.high = high;
@@ -47,6 +65,8 @@ public class TickerDay {
         this.lowAdjusted = lowAdjusted;
         this.closeAdjusted = closeAdjusted;
         this.volumeAdjusted = volumeAdjusted;
+        this.firstDelta = firstDelta;
+        this.secondDelta = secondDelta;
     }
 
     public Date getDate() {
@@ -151,5 +171,21 @@ public class TickerDay {
 
     public void setVolumeAdjusted(Double volumeAdjusted) {
         this.volumeAdjusted = volumeAdjusted;
+    }
+
+    public Double getFirstDelta() {
+        return firstDelta;
+    }
+
+    public void setFirstDelta(Double firstDelta) {
+        this.firstDelta = firstDelta;
+    }
+
+    public Double getSecondDelta() {
+        return secondDelta;
+    }
+
+    public void setSecondDelta(Double secondDelta) {
+        this.secondDelta = secondDelta;
     }
 }
