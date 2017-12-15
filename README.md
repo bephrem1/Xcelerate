@@ -5,3 +5,5 @@ This application fetches data from the Quandl API and persists the data (after c
 This is a team/personal project and possibly may not be fully on display in this repository.
 
 Project Start Date: 11/13/2017
+
+Project status: paused
